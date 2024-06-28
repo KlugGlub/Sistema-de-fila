@@ -18,9 +18,8 @@ const c = 15; // Incremento
 let seed = 12345; // Semente inicial
 
 //Valores para os parâmetros
-//(m = 2^{31} - 1) (a = 7^5)  (c = 15) (X = 12345)
-//(m = 3^{31} - 1) (a = 11^5) (c = 23) (X = 98765)
-//(m = 5^{31} - 1) (a = 13^5) (c = 7) (X_{0,3} = 54321)
+//(m = 75 **31} - 1) (a = 8^5)  (c = 15) (X = 12345)
+
 
 
 // Função para gerar número pseudoaleatório entre 0 e 1
@@ -69,4 +68,4 @@ const tempoOcupadoServidor = clientesAtendidos * mediaAtendimentoPorMinuto;
 console.log(`Tempo médio em fila: ${tempoMedioEmFila.toFixed(2)} minutos`);
 console.log(`Número de clientes atendidos: ${clientesAtendidos}`);
 console.log(`Tempo ocupado pelo servidor (caixa): ${tempoOcupadoServidor.toFixed(2)} minutos`);
-console.log(`Números gerados: ${numerosGerados.join(', ')}`); // Mostra todos os números gerados
+
