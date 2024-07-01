@@ -6,7 +6,7 @@ let tempoSimulado = 450
 
 //Inicialização
 let fila = []
-let estadoServidor = 0
+let servidor = 0
 let relogio = 0
 let numFila = 0
 let ultimoEvento;
@@ -17,10 +17,10 @@ let proximaSaida = 9999999
 
 
 function gerarLCG() {
-  let a = 8 ** 5
-  let seed = 12345
-  let c = 15
-  let m = 75 ** 31 - 1
+  let a = 50
+  let seed = 100
+  let c = 12
+  let m = 20*2 - 1
 
   seed = (a * seed + c) % m;
   return seed / m;
@@ -31,11 +31,13 @@ function gerarExponencial(media){
 }
 
 function gerarChegada(){
-  gerarLCG()
+  return gerarExponencial(medPessoasPorMinuto)
 }
 function gerarSaida(){
-  gerarLCG()
+  return gerarExponencial(medAtendimetno)
 }
+
+console.log(gerarChegada())
 
 
 //Simulação
@@ -51,14 +53,8 @@ while(relogio < tempoSimulado){
 
         fila.push(proximaChegada)
         numFila++
-        ultimoEvento = proximaChegada
         proximaChegada = gerarChegada()
         proximaSaida = gerarSaida()
-        relogio += proximaChegada
-        console.log("Tempo: " + relogio)
-        console.log("Último Evento: ${ultimoEvento}")
-        console.log("Fila:  ${fila.length}")
-
       }
   } else {  //processa Saída
     if(numFila > 0){
@@ -66,7 +62,6 @@ while(relogio < tempoSimulado){
       proximaSaida = gerarSaida()
       numFila--
       tempoSaida = fila.shift()
-      console.log("Fila:  ${fila.length}")
 
     } else {
       servidor = 0
